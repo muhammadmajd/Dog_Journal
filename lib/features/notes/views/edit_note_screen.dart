@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../bloc/note_bloc.dart';
+import '../controllers/edit_note_controller.dart';
 import '../models/note.dart';
 
 class EditNoteScreen extends StatefulWidget {
@@ -16,23 +17,23 @@ class EditNoteScreen extends StatefulWidget {
 }
 
 class _EditNoteScreenState extends State<EditNoteScreen> {
-  late final TextEditingController _titleController;
-  late final TextEditingController _commentController;
+  late final EditNoteController _controller;
   XFile? _imageFile;
 
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.note.title);
-    _commentController = TextEditingController(text: widget.note.comment);
+    _controller = EditNoteController();
+    _controller.titleController = TextEditingController(text: widget.note.title);
+    _controller.commentController = TextEditingController(text: widget.note.comment);
   }
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _commentController.dispose();
+    _controller.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +54,13 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
             /// title
             TextField(
-              controller: _titleController,
+              controller: _controller.titleController,
               decoration: const InputDecoration(labelText: 'Название'),
             ),
             const SizedBox(height: 16),
             /// comment
             TextField(
-              controller: _commentController,
+              controller: _controller.commentController,
               decoration: const InputDecoration(labelText: 'Комментарий'),
               maxLines: 4,
             ),
@@ -78,7 +79,9 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: _updateNote,
+              onPressed: () async {
+                await _controller.updateNote(context);
+              },
               child: const Text('Сохранить'),
             ),
             const SizedBox(height: 100),
@@ -94,22 +97,12 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
     if (image != null) {
       setState(() {
         _imageFile = image;
+        _controller.setImagePath(image!.path);
       });
     }
   }
 
-  void _updateNote() {
-    final updatedNote = Note(
-      id: widget.note.id,
-      title: _titleController.text,
-      comment: _commentController.text,
-      imagePath: _imageFile?.path ?? widget.note.imagePath,
-      createdAt: widget.note.createdAt,
-    );
 
-    context.read<NoteBloc>().add(UpdateNote(updatedNote));
-    Navigator.pop(context);
-  }
 
   void _deleteNote() {
     showDialog(
@@ -123,11 +116,10 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
             child: const Text('Отменить'),
           ),
           TextButton(
-            onPressed: () {
-              context.read<NoteBloc>().add(DeleteNote(widget.note.id));
-              Navigator.pop(context); // Close dialog
-              Navigator.pop(context); // Close edit screen
+            onPressed: () async{
+            await _controller.deleteNote(context,widget.note);
             },
+
             child: const Text('удалить', style: TextStyle(color: Colors.red)),
           ),
         ],

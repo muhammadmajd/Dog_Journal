@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../bloc/note_bloc.dart';
+import '../controllers/add_note_controller.dart';
 import '../models/note.dart';
 import '../widgets/photo_picker.dart';
 
@@ -14,15 +15,20 @@ class AddNoteScreen extends StatefulWidget {
 }
 
 class _AddNoteScreenState extends State<AddNoteScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _commentController = TextEditingController();
+
   XFile? _imageFile;
+
+  late final AddNoteController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AddNoteController();
+  }
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _commentController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -35,12 +41,12 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
-          key: _formKey,
+          key: _controller.formKey,
           child: Column(
             children: [
               /// title
               TextFormField(
-                controller: _titleController,
+                controller: _controller.titleController,
                 decoration: const InputDecoration(
                   labelText: 'Название заметки',
                   border: OutlineInputBorder(),
@@ -55,7 +61,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
               const SizedBox(height: 16),
               /// comment
               TextFormField(
-                controller: _commentController,
+                controller: _controller.commentController,
                 decoration: const InputDecoration(
                   labelText: 'Комментарий',
                   border: OutlineInputBorder(),
@@ -73,15 +79,20 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
               PhotoPicker(
                 imageFile: _imageFile,
                 onImagePicked: (XFile? image) {
+                  //_controller.setImagePath(image!.path);
                   setState(() {
                     _imageFile = image;
+                    _controller.setImagePath(image!.path);
                   });
                 },
               ),
               const SizedBox(height: 24),
               /// save button
               ElevatedButton(
-                onPressed: _saveNote,
+                //onPressed: _saveNote,
+                onPressed: () async {
+                  await _controller.saveNote(context);
+                },
                 child: const Text('Сохранить'),
               ),
             ],
@@ -91,18 +102,4 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     );
   }
 
-  void _saveNote() {
-    if (_formKey.currentState!.validate()) {
-      final note = Note(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        title: _titleController.text,
-        comment: _commentController.text,
-        imagePath: _imageFile?.path,
-        createdAt: DateTime.now(),
-      );
-
-      context.read<NoteBloc>().add(AddNote(note));
-      Navigator.pop(context);
-    }
-  }
 }

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/shimmer_loading.dart';
 import '../bloc/note_bloc.dart';
+import '../controllers/notes_list_controller.dart';
 import '../models/note.dart';
 import '../widgets/note_card.dart';
 import 'add_note_screen.dart';
@@ -21,12 +22,17 @@ class NotesListScreen extends StatefulWidget {
 }
 
 class _NotesListScreenState extends State<NotesListScreen> {
-  final PageController _pageController = PageController(viewportFraction: 0.9);
-  int _currentPage = 0;
 
+
+  late final NoteListController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = NoteListController();
+  }
   @override
   void dispose() {
-    _pageController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -121,11 +127,11 @@ class _NotesListScreenState extends State<NotesListScreen> {
       child: Stack(
         children: [
           PageView.builder(
-            controller: _pageController,
+            controller: _controller.pageController,
             itemCount: imageNotes.length,
             onPageChanged: (index) {
               setState(() {
-                _currentPage = index;
+                _controller.currentPage = index;
               });
             },
             itemBuilder: (context, index) {
@@ -156,7 +162,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _currentPage == index
+                    color: _controller.currentPage == index
                         ? Colors.white
                         : Colors.white.withOpacity(0.5),
                   ),
@@ -176,7 +182,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  imageNotes[_currentPage].title,
+                  imageNotes[_controller.currentPage].title,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,

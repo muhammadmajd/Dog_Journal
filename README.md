@@ -23,7 +23,7 @@
 ![Редактировать заметку](assets/screenshots/edit2.jpeg)
 
 ## Структура проекта
-![Редактировать заметку](assets/screenshots/stru.png)
+![Редактировать заметку](assets/screenshots/stru1.png)
 
 🛠 Разработка
 
