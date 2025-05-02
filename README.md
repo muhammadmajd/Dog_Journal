@@ -36,6 +36,9 @@ Flutter - кросс-платформенный фреймворк
 ### Требования
 - Flutter 3.0+
 - Android SDK / Xcode
+###  Контакты:
+📧 eng.muhammadaliah@gmail.com
+💬 @mailiah321
 
 ### Шаги установки
 ```bash
@@ -50,3 +53,4 @@ flutter pub get
 
 # 4. Запустить приложение
 flutter run
+
