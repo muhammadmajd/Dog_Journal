@@ -35,6 +35,7 @@ class NoteDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            /// image
             if (note.imagePath != null)
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
@@ -45,11 +46,13 @@ class NoteDetailScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+            /// title
             Text(
               note.title,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 8),
+            /// comment
             Text(
               note.comment,
               style: Theme.of(context).textTheme.bodyLarge,

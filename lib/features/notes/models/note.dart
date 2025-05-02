@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
 
 part 'note.g.dart';
-
+/// Define Note object
 @HiveType(typeId: 0)
 class Note {
   @HiveField(0)

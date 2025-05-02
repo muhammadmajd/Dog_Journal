@@ -1,5 +1,5 @@
 part of 'note_bloc.dart';
-
+/// define state of notes
 abstract class NoteState extends Equatable {
   const NoteState();
 

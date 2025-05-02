@@ -90,6 +90,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
           padding: const EdgeInsets.all(8.0),
           child: _buildImageSlider(imageNotes),
         ),
+        /// list view to display notes
         Expanded(
           child: ListView.builder(
             itemCount: notes.length,

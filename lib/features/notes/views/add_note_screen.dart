@@ -38,6 +38,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
           key: _formKey,
           child: Column(
             children: [
+              /// title
               TextFormField(
                 controller: _titleController,
                 decoration: const InputDecoration(
@@ -52,6 +53,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              /// comment
               TextFormField(
                 controller: _commentController,
                 decoration: const InputDecoration(
@@ -67,6 +69,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              /// photo picker
               PhotoPicker(
                 imageFile: _imageFile,
                 onImagePicked: (XFile? image) {
@@ -76,6 +79,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 },
               ),
               const SizedBox(height: 24),
+              /// save button
               ElevatedButton(
                 onPressed: _saveNote,
                 child: const Text('Сохранить'),

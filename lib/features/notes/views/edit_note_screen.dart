@@ -50,17 +50,21 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+
+            /// title
             TextField(
               controller: _titleController,
               decoration: const InputDecoration(labelText: 'Название'),
             ),
             const SizedBox(height: 16),
+            /// comment
             TextField(
               controller: _commentController,
               decoration: const InputDecoration(labelText: 'Комментарий'),
               maxLines: 4,
             ),
             const SizedBox(height: 16),
+            /// image
             if (widget.note.imagePath != null || _imageFile != null)
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),

@@ -24,6 +24,7 @@ class NoteCard extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: Row(
             children: [
+              /// Display image if not null
               if (note.imagePath != null)
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
@@ -41,6 +42,7 @@ class NoteCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// title of note
                     Text(
                       note.title,
                       style: Theme.of(context).textTheme.titleMedium,
@@ -48,6 +50,7 @@ class NoteCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
+                    /// comment of note
                     Text(
                       note.comment,
                       style: Theme.of(context).textTheme.bodyMedium,

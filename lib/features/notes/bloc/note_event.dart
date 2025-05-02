@@ -1,5 +1,5 @@
 part of 'note_bloc.dart';
-
+/// define all events
 abstract class NoteEvent extends Equatable {
   const NoteEvent();
 }
