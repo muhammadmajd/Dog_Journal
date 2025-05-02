@@ -14,17 +14,18 @@ class EditNoteController {
     commentController.dispose();
   }
 
-  Future<void> updateNote(BuildContext context) async {
-    if (editFormKey.currentState?.validate() ?? false) {
+  Future<void> updateNote(BuildContext context, Note not, String? path) async {
+    if (editFormKey.currentState?.validate() ?? false)
+    {
       final note = Note(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        id: not.id,
         title: titleController.text.trim(),
         comment: commentController.text.trim(),
-        imagePath: imagePath,
-        createdAt: DateTime.now(),
+        imagePath: path!,
+        createdAt: not.createdAt,
       );
-
       context.read<NoteBloc>().add(UpdateNote(note));
+      //context.read<NoteBloc>().add(UpdateNote(note));
       Navigator.pop(context);
     }
   }

@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       drawer: _buildDrawer(context),
-      body: const NotesListScreen(),
+      body: Center(child: const NotesListScreen()),
     );
   }
 

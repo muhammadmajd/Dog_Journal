@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'app/app.dart';
+import 'app/theme/theme_provider.dart';
 import 'features/notes/bloc/note_bloc.dart';
 import 'features/notes/models/note.dart';
 import 'features/notes/repositories/note_repository.dart';
@@ -29,3 +31,6 @@ void main() async {
     ),
   );
 }
+
+
+

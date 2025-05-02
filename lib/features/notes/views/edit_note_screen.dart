@@ -49,43 +49,49 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
+        child: Form(
+          key: _controller.editFormKey,
+          child: Column(
+            children: [
 
-            /// title
-            TextField(
-              controller: _controller.titleController,
-              decoration: const InputDecoration(labelText: 'Название'),
-            ),
-            const SizedBox(height: 16),
-            /// comment
-            TextField(
-              controller: _controller.commentController,
-              decoration: const InputDecoration(labelText: 'Комментарий'),
-              maxLines: 4,
-            ),
-            const SizedBox(height: 16),
-            /// image
-            if (widget.note.imagePath != null || _imageFile != null)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: _imageFile != null
-                    ? Image.file(File(_imageFile!.path))
-                    : Image.file(File(widget.note.imagePath!)),
+              /// title
+              TextField(
+                controller: _controller.titleController,
+                decoration: const InputDecoration(labelText: 'Название'),
               ),
-            ElevatedButton(
-              onPressed: _pickImage,
-              child: const Text('Изменить фото'),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () async {
-                await _controller.updateNote(context);
-              },
-              child: const Text('Сохранить'),
-            ),
-            const SizedBox(height: 100),
-          ],
+              const SizedBox(height: 16),
+              /// comment
+              TextField(
+                controller: _controller.commentController,
+                decoration: const InputDecoration(labelText: 'Комментарий'),
+                maxLines: 4,
+              ),
+              const SizedBox(height: 16),
+              /// image
+              if (widget.note.imagePath != null || _imageFile != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: _imageFile != null
+                      ? Image.file(File(_imageFile!.path))
+                      : Image.file(File(widget.note.imagePath!)),
+                ),
+              ElevatedButton(
+                onPressed: _pickImage,
+                child: const Text('Изменить фото'),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+               // onPressed: ()=>_updateNote(),
+                onPressed: () async {
+                  String? path =  _imageFile?.path ?? widget.note.imagePath;
+
+                  await _controller.updateNote(context,widget.note, path );
+                },
+                child: const Text('Сохранить'),
+              ),
+              const SizedBox(height: 100),
+            ],
+          ),
         ),
       ),
     );
@@ -101,7 +107,6 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
       });
     }
   }
-
 
 
   void _deleteNote() {

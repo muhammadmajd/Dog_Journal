@@ -33,6 +33,12 @@ Flutter - кросс-платформенный фреймворк
 - Hive - локальное хранилище данных
 - BLoC - управление состоянием
 - image_picker
+-   build_runner: ^2.4.4
+-   test: ^1.24.0
+-   bloc_test: ^9.1.0
+-    mocktail: ^1.0.3
+-   sizer: ^3.0.5
+-   hive_test: ^1.0.1
 ### Требования
 - Flutter 3.0+
 - Android SDK / Xcode
