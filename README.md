@@ -1,17 +1,52 @@
-# dog
+# Dog Journal 🐶
 
-A new Flutter project.
+# Заметки для собак 🐶
 
-## Getting Started
+Простое мобильное приложение для хранения важной информации о вашем питомце.
+![App Logo](assets/screenshots/logo.png)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# Dog_Journal
+## Возможности
+✔️ Создание заметок с категориями (здоровье, питание, тренировки)  
+✔️ Напоминания о важных событиях (прививки, визиты к ветеринару)  
+✔️ Хранение медицинских данных и рецептов  
+✔️ Возможность добавления фото питомца  
+
+
+## Скриншоты
+![Главный экран](assets/screenshots/main2.jpeg)
+![Главный экран](assets/screenshots/main1.jpeg)
+![Создание заметки](assets/screenshots/add.jpeg)
+![Редактировать заметку](assets/screenshots/edit.jpeg)
+
+## Структура проекта
+
+![Редактировать заметку](assets/screenshots/stru.png)
+
+🛠 Разработка
+
+##Технологии
+
+Flutter - кросс-платформенный фреймворк
+Hive - локальное хранилище данных
+BLoC - управление состоянием
+image_picker
+### Требования
+- Flutter 3.0+
+- Android SDK / Xcode
+
+### Шаги установки
+```bash
+# 1. Клонировать репозиторий
+git clone git@github.com:muhammadmajd/Dog_Journal.git
+
+# 2. Перейти в директорию проекта
+cd dog-notes
+
+# 3. Установить зависимости
+flutter pub get
+
+# 4. Запустить приложение
+flutter run
