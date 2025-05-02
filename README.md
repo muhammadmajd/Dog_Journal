@@ -23,38 +23,6 @@
 ![Редактировать заметку](assets/screenshots/edit2.jpeg)
 
 ## Структура проекта
-- lib/
-- ├── main.dart
-- ├── app/
-- │   ├── app.dart
-- │   ├── theme/
-- │   │   ├── app_theme.dart
-- │   │   └── theme_provider.dart
-- ├── features/
-- │   ├── notes/
-- │   │   ├── bloc/
-- │   │   │   ├── note_bloc.dart
-- │   │   │   ├── note_event.dart
-- │   │   │   └── note_state.dart
-- │   │   ├── models/
-- │   │   │   └── note.dart
-- │   │   ├── repositories/
-- │   │   │   └── note_repository.dart
-- │   │   ├── views/
-- │   │   │   ├── add_note_screen.dart
-- │   │   │   ├── note_detail_screen.dart
-- │   │   │   └── notes_list_screen.dart
-- │   │   └── widgets/
-- │   │       ├── note_card.dart
-- │   │       └── photo_picker.dart
-- ├── core/
-- │   ├── constants/
-- │   │   └── assets.dart
-- │   ├── utils/
-- │   │   ├── app_router.dart
-- │   │   ├── size_config.dart
-- │   │   └── shimmer_loading.dart
-
 ![Редактировать заметку](assets/screenshots/stru.png)
 
 🛠 Разработка
